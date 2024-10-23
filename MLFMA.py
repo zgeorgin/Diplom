@@ -57,8 +57,8 @@ def well_separated(cluster_a, cluster_b):
 def compute_multipole(cluster):
     if not cluster.children:
         for p in cluster.particles:
-            r = p.position - cluster.center
-            cluster.multipole_moment += np.linalg.norm(r) * p.charge  
+            #r = p.position - cluster.center
+            cluster.multipole_moment += p.charge  
     else:
         for child in cluster.children:
             compute_multipole(child)
@@ -83,8 +83,8 @@ def local_to_local(cluster):
 def evaluate_potential(cluster):
     if not cluster.children:
         for p in cluster.particles:
-            r = p.position - cluster.center
-            p.potential += np.linalg.norm(r) * cluster.local_expansion
+            #r = p.position - cluster.center
+            p.potential += cluster.local_expansion
     else:
         for child in cluster.children:
             evaluate_potential(child)
@@ -94,7 +94,7 @@ def collect_clusters(cluster, clusters):
     for child in cluster.children:
         collect_clusters(child, clusters)
         
-def compute_MLMFA(particles, max_particles, bounds):
+def compute_MLFMA(particles, max_particles, bounds):
     root_cluster = build_tree(particles, max_particles, level=0, bounds=bounds)
 
     compute_multipole(root_cluster)

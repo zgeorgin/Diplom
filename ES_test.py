@@ -1,4 +1,4 @@
-from MLMFA import *
+from MLFMA import *
 import numpy as np
 def main():
     # Создаём заряженную пластину 1х1
@@ -13,7 +13,7 @@ def main():
     for particle_line in shoot_particles:
         for p in particle_line:
             particles.append(p)
-            compute_MLMFA(particles, max_particles, num_particles, bounds)
+            compute_MLFMA(particles, max_particles, num_particles, bounds)
             print(p.potential)
             particles.pop(-1)
             

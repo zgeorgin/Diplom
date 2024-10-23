@@ -1,4 +1,4 @@
-from MLMFA import *
+from MLFMA import *
 
 def main():
     # Параметры модели
@@ -9,7 +9,7 @@ def main():
     # Генерация случайных частиц
     particles = [Particle(position=np.random.rand(2), charge=np.random.randn()) for _ in range(num_particles)]
     
-    compute_MLMFA(particles, max_particles, bounds)
+    compute_MLFMA(particles, max_particles, bounds)
 
     for i in range(10):
         print(f"Частица {i}: потенциал = {particles[i].potential}")
