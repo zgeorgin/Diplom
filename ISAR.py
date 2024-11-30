@@ -13,15 +13,15 @@ def X(theta, f, particles : list[Particle], r0):
     return integral
     
 def main():
-    num_particles = 1000
+    num_particles = 25000
     max_particles = 10
     bounds = np.array([0.0, 3.0, 0.0, 3.0])
 
     r0 = 100
     f = 10 ** 8
 
-    particles = list(np.array([[Particle(position=(j, i), charge=0) for j in np.linspace(1, 2, int(num_particles ** 0.5))] for i in np.linspace(1, 2, int(num_particles ** 0.5))]).flatten())
-    #particles.append(Particle(position = (2, 2), charge = 1))
+    particles = list(np.array([[Particle(position=(j, i), charge=0) for j in np.x(1, 2, int(num_particles ** 0.5))] for i in np.linspace(1, 2, int(num_particles ** 0.5))]).flatten())
+    particles.append(Particle(position = (1.5, 1.5), charge = 1))
     compute_MLFMA(particles, max_particles, bounds)
     x = [p.position[0] for p in particles]
     y = [p.position[1] for p in particles]
@@ -37,7 +37,7 @@ def main():
     for theta in thetas:
         X_array.append(X(theta * np.pi / 180, f, particles, r0))
         
-    plt.plot(thetas, X_array)
+    plt.semilogy(thetas, X_array)
     plt.show()
     
 main()
